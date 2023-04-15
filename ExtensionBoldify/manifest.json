@@ -1,0 +1,12 @@
+{
+
+    "manifest_version": 2,
+    "name": "Boldify",
+    "version": "1.0",
+    "description": "Permet de mettre la moitié de chaque mot en gras",
+    "homepage_url": "",
+    "icons": {
+      "48": "icons/cat.png"
+    }
+  }
+  

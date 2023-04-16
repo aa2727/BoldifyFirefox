@@ -51,16 +51,38 @@ function boldify(textNode) {
     let listWords;
     let element;
     let textElement;
+    let textBolded;
+    let slicedText;
+    let listText = [];
+    let leftText = textNode.textContent;
+    let listElement = [];
     if (text != "" && text != " ") {
         listWords = getAllWords(text);
         listWords.forEach(word => {
             console.log(word);
+
+            textBolded = getToBoldifyText(textNode,word);
+            slicedText = sliceOnce(leftText,textBolded);
+            console.log(slicedText)
+            listText.push(slicedText[0]);
+            leftText = slicedText[1];
+
             element = document.createElement("b");
-            textElement = document.createTextNode(getToBoldifyText(textNode,word));
+            textElement = document.createTextNode(textBolded);
             element.appendChild(textElement);
-            textNode.parentNode.appendChild(element);
-            
+            listElement.push(element);
         });
+
+        console.log(listElement);
+        console.log(listText)
+        for (let index = 0; index < listElement.length; index++) {
+            textNode.parentNode.appendChild(document.createTextNode(listText[index]));
+            textNode.parentNode.appendChild(listElement[index]);
+            
+        }
+        textNode.parentNode.appendChild(document.createTextNode(leftText));
+        textNode.parentNode.removeChild(textNode);
+
     }
     
 }
@@ -68,8 +90,14 @@ function boldify(textNode) {
 function getToBoldifyText(textNode,word) {
     let middle = getHalfSize(word);
     return word.slice(0,middle);
-    
-    
+}
+
+
+function sliceOnce(string,word) {
+    let position = string.search(word);
+    return [string.slice(0,position),string.slice((position+word.length),string.length)];
 }
 
 textParcours(document.body);
+
+console.log(sliceOnce("Bonjour à tous","to"));

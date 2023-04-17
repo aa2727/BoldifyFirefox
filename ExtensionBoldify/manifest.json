@@ -4,9 +4,16 @@
     "name": "Boldify",
     "version": "1.0",
     "description": "Permet de mettre la moitié de chaque mot en gras",
-    "homepage_url": "",
+    "homepage_url": "https://github.com/aa2727/BoldifyFirefox",
+
     "icons": {
       "48": "icons/cat.png"
-    }
+    },
+
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content_scripts/boldify.js"]
+      }]
   }
   

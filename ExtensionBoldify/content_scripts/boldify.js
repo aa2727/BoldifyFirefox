@@ -1,5 +1,3 @@
-console.log("test");
-
 /**
  * Fonction permettant d'obtenir la liste des mots du texte
  * @returns Array de tous les mots contenu dans le texte
@@ -25,7 +23,6 @@ function getHalfSize(s) {
 function textParcours(node) {
     node.childNodes.forEach(element => {
         if (element.nodeType == Node.TEXT_NODE) {
-            console.log(element);
             boldify(element);
         }
         else{
@@ -59,11 +56,8 @@ function boldify(textNode) {
     if (text != "" && text != " ") {
         listWords = getAllWords(text);
         listWords.forEach(word => {
-            console.log(word);
-
             textBolded = getToBoldifyText(textNode,word);
             slicedText = sliceOnce(leftText,textBolded);
-            console.log(slicedText)
             listText.push(slicedText[0]);
             leftText = slicedText[1];
 
@@ -72,9 +66,6 @@ function boldify(textNode) {
             element.appendChild(textElement);
             listElement.push(element);
         });
-
-        console.log(listElement);
-        console.log(listText)
         for (let index = 0; index < listElement.length; index++) {
             textNode.parentNode.appendChild(document.createTextNode(listText[index]));
             textNode.parentNode.appendChild(listElement[index]);
@@ -100,5 +91,3 @@ function sliceOnce(string,word) {
 }
 
 textParcours(document.body);
-
-console.log(sliceOnce("Bonjour à tous","to"));

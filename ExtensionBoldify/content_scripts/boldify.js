@@ -94,6 +94,7 @@ function getToBoldifyText(textNode,word) {
 
 
 function sliceOnce(string,word) {
+    word = word.replace(/[\])}[{(]/g, '');
     let position = string.search(word);
     return [string.slice(0,position),string.slice((position+word.length),string.length)];
 }
